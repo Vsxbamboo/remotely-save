@@ -2,6 +2,106 @@
 
 English | [中文](./README.zh-cn.md)
 
+## Community-maintained fork
+
+This repository is a community-maintained continuation of [Remotely Save](https://github.com/remotely-save/remotely-save).
+
+The goal is to keep Remotely Save working with current Obsidian releases and cloud service API changes, while staying compatible with existing Remotely Save users.
+
+This fork currently keeps the original plugin id:
+
+```json
+"id": "remotely-save"
+```
+
+Keeping the same plugin id lets existing users continue using their current plugin settings and OAuth configuration in:
+
+```text
+<your vault>/.obsidian/plugins/remotely-save/data.json
+```
+
+Do not delete or share `data.json`. It may contain sensitive tokens and credentials.
+
+## Current maintenance focus
+
+- Keep OneDrive sync working on recent Obsidian desktop and mobile versions.
+- Review useful fixes from community forks and upstream pull requests.
+- Keep releases conservative and compatible with existing vaults.
+- Publish GitHub release assets that can be installed with BRAT or manually.
+
+## OneDrive HTTP 400 fix
+
+Version `0.5.25.1` includes the OneDrive request-layer fix from:
+
+https://github.com/Deadbush225/remotely-save/commit/eaea5f118e44faa04ae9ed1e6e81da1792cb4df0
+
+The fix replaces Obsidian `request()` with `requestUrl()` in:
+
+- `src/fsOnedrive.ts`
+- `pro/src/fsOnedriveFull.ts`
+
+Affected calls:
+
+- OAuth authorization code exchange
+- Refresh token exchange
+- Microsoft Graph JSON GET/POST/PATCH requests
+
+## Install this fork with BRAT
+
+This fork can be installed and updated through the Obsidian plugin [Obsidian42 - BRAT](https://github.com/TfTHacker/obsidian42-brat). BRAT installs plugins directly from GitHub releases, which makes it useful for community-maintained builds before they are available through the official Obsidian community plugin catalog.
+
+Steps:
+
+1. Install and enable [Obsidian42 - BRAT](https://github.com/TfTHacker/obsidian42-brat) in Obsidian.
+2. Open BRAT settings.
+3. Choose `Add Beta plugin`.
+4. Enter this repository:
+
+```text
+Vsxbamboo/remotely-save
+```
+
+5. Let BRAT install the plugin from the latest GitHub release.
+6. Restart Obsidian.
+7. Confirm Remotely Save is enabled.
+8. Test sync with a backed-up vault.
+
+This repository name is intended for BRAT installs of this maintained fork.
+
+## Manual install
+
+Download these files from the latest GitHub Release:
+
+- `main.js`
+- `manifest.json`
+- `styles.css`
+
+Copy them into:
+
+```text
+<your vault>/.obsidian/plugins/remotely-save/
+```
+
+Do not delete or replace:
+
+```text
+data.json
+```
+
+Restart Obsidian after replacing the files.
+
+## Relationship to upstream
+
+This is not the official upstream repository. It is a community-maintained continuation/fork.
+
+Original project:
+
+https://github.com/remotely-save/remotely-save
+
+Useful upstream PRs/issues and community fixes may be reviewed and ported here.
+
+## Original README
+
 This is yet another unofficial sync plugin for Obsidian. If you like it or find it useful, please consider give it a [star ![GitHub Repo stars](https://img.shields.io/github/stars/fyears/remotely-save?style=social)](https://github.com/fyears/remotely-save) on Github.
 
 [![BuildCI](https://github.com/fyears/remotely-save/actions/workflows/auto-build.yml/badge.svg)](https://github.com/fyears/remotely-save/actions/workflows/auto-build.yml)
@@ -219,3 +319,4 @@ Download history can be viewed on the unofficial [Obsidian Stats](https://www.mo
 (NOT affiliated with official Obsidian and GitHub and Remotely Save.)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=remotely-save/remotely-save&type=Date)](https://star-history.com/#remotely-save/remotely-save&Date)
+
